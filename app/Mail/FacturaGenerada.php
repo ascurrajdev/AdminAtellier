@@ -30,7 +30,7 @@ class FacturaGenerada extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        $pdf = PDF::loadView("pdf.factura",[
+        $pdf = PDF::setOptions(['logOutputFile' => null])->loadView("pdf.factura",[
             "factura" => $this->factura
         ]);
         return $this->markdown('emails.factura.creada')
